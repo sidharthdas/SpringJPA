@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity(name = "USERDETAIL")
@@ -18,6 +19,8 @@ public class UserDetail {
 	private String userName;
 	@Column(name = "userAdd")
 	private String userAdd;
+	@OneToOne
+	private Vehicle vehicle;
 
 	public long getId() {
 		return id;
@@ -42,5 +45,14 @@ public class UserDetail {
 	public void setUserAdd(String userAdd) {
 		this.userAdd = userAdd;
 	}
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+	
 
 }
