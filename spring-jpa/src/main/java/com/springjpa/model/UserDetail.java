@@ -19,11 +19,20 @@ public class UserDetail {
 	private String userName;
 	@Column(name = "userAdd")
 	private String userAdd;
+	private double userSalary;
 	@OneToOne
 	private Vehicle vehicle;
 
 	public long getId() {
 		return id;
+	}
+
+	public double getUserSalary() {
+		return userSalary;
+	}
+
+	public void setUserSalary(double userSalary) {
+		this.userSalary = userSalary;
 	}
 
 	public void setId(long id) {
@@ -53,6 +62,5 @@ public class UserDetail {
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
-	
 
 }

@@ -17,7 +17,15 @@ public class Vehicle {
 	private Long vehicleId;
 	private String vehicleType;
 	private String vehicleName;
+	private String vehicleDesc;
 
+	public String getVehicleDesc() {
+		return vehicleDesc;
+	}
+
+	public void setVehicleDesc(String vehicleDesc) {
+		this.vehicleDesc = vehicleDesc;
+	}
 
 	public Long getVehicleId() {
 		return vehicleId;
@@ -32,7 +40,7 @@ public class Vehicle {
 	}
 
 	public void setVechileType(String vehicleType) {
-		this.vehicleType =vehicleType;
+		this.vehicleType = vehicleType;
 	}
 
 	public String getVehicleName() {
