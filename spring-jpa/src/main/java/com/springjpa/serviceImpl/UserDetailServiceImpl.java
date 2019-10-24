@@ -21,6 +21,9 @@ public class UserDetailServiceImpl implements UserDetailService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	
+	
 
 	@Autowired
 	private VehicleDao vechileDao;
