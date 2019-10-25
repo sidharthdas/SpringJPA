@@ -36,6 +36,6 @@ public interface UserRepository extends CrudRepository<UserDetail, Long> {
 	
 	@Modifying
 	@Query(value = "UPDATE UserDetail SET userAdd = :userAdd, userSalary = :userSalary WHERE userName = :userName", nativeQuery = true)
-	int updateUserDetail(@Param("userAdd")String userAdd, @Param("userSalary")double userSalary,@Param("userName")String userName );
+	int updateUserDetail(@Param("userAdd")String userAdd, @Param("userSalary")double userSalary,@Param("userName")String userName ); 
 
 }

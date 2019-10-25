@@ -1,5 +1,7 @@
 package com.springjpa.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,4 +45,12 @@ public class VehicleServiceImpl implements VehicleService {
 		}
 		return "Vehicle is not repsent.";
 	}
+
+	@Override
+	public List<Vehicle> allVehicle() {
+		// TODO Auto-generated method stub
+		return vehicleDao.allVehicle();
+	}
+	
+	
 }

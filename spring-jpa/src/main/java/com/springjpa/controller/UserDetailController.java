@@ -69,5 +69,4 @@ public class UserDetailController {
 	public List<UserDetail> updatedSalaryOfAllUser(@RequestBody String bonusAmount) {
 		return userDetailService.bonusToUsers(bonusAmount);
 	}
-
 }
