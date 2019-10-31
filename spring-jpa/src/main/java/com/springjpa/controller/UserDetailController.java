@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springjpa.dto.UserSalaryIncrementDto;
@@ -64,9 +65,21 @@ public class UserDetailController {
 	public List<UserDetail> userSalaryMoreThan10k() {
 		return userDetailService.userSalaryMoreThan10k();
 	}
-	
+
 	@PutMapping("/update-salary-of-all-users")
 	public List<UserDetail> updatedSalaryOfAllUser(@RequestBody String bonusAmount) {
 		return userDetailService.bonusToUsers(bonusAmount);
+	}
+
+	@GetMapping("/salary/less-than")
+	public List<UserDetail> allUsersLessThanSalaryRange(
+			@RequestParam(value = "salary",required = true, defaultValue = "0") String salary) {
+		System.out.println("salary: "+salary);
+		return userDetailService.allUsersLessThanSalaryRange(salary);
+	}
+	
+	@GetMapping("/salary/more-than")
+	public List<UserDetail> allUserGreaterThanSalaryRange(@RequestParam(value = "salary", defaultValue = "0")String salary){
+		return userDetailService.allUserGreaterThanSalaryRange(salary);
 	}
 }

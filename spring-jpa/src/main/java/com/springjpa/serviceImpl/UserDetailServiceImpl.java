@@ -148,4 +148,20 @@ public class UserDetailServiceImpl implements UserDetailService {
 		return updatedUsersWithBonus;
 	}
 
+	@Override
+	public List<UserDetail> allUsersLessThanSalaryRange(String salary) {
+		// TODO Auto-generated method stub
+		double sal = Double.valueOf(salary);
+		return userRepository.allUsersLessThanSalaryRange(sal);
+	}
+
+	@Override
+	public List<UserDetail> allUserGreaterThanSalaryRange(String salary) {
+		// TODO Auto-generated method stub
+		double sal = Double.valueOf(salary);
+		List<UserDetail> allUsers = userRepository.allUsers();
+		List<UserDetail> allUserGreaterThanSalaryRange = allUsers.stream().filter((x) -> x.getUserSalary() > sal).collect(Collectors.toList());
+		return allUserGreaterThanSalaryRange;
+	}
+
 }

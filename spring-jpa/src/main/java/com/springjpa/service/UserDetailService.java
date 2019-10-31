@@ -1,6 +1,7 @@
 package com.springjpa.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.springjpa.dto.UserSalaryIncrementDto;
 import com.springjpa.model.UserDetail;
@@ -16,5 +17,7 @@ public interface UserDetailService {
 	String updateUserSalary(UserSalaryIncrementDto userSalaryIncrementDto);
 	List<UserDetail> userSalaryMoreThan10k();
 	List<UserDetail> bonusToUsers(String bonusAmount);
+	List<UserDetail> allUsersLessThanSalaryRange(String salary);
+	List<UserDetail> allUserGreaterThanSalaryRange(String salary);
 
 }
