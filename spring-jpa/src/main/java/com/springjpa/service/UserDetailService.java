@@ -19,5 +19,7 @@ public interface UserDetailService {
 	List<UserDetail> bonusToUsers(String bonusAmount);
 	List<UserDetail> allUsersLessThanSalaryRange(String salary);
 	List<UserDetail> allUserGreaterThanSalaryRange(String salary);
+	String percentOfUserMoreThanGivenSalary(String salary);
+	String percentOfUserLessThanGivenSalary(String salary);
 
 }

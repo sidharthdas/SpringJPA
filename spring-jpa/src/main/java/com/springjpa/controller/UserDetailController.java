@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -82,4 +83,16 @@ public class UserDetailController {
 	public List<UserDetail> allUserGreaterThanSalaryRange(@RequestParam(value = "salary", defaultValue = "0")String salary){
 		return userDetailService.allUserGreaterThanSalaryRange(salary);
 	}
+	
+	@GetMapping("user/salary-more-than/{sal}/percent")
+	public String percentOfUserMoreThanSalary(@PathVariable("sal")String sal) {
+		return userDetailService.percentOfUserMoreThanGivenSalary(sal);
+	}
+	
+	@GetMapping("user/salary-less-than/{sal}/percent")
+	public String percentOfUserLessThanSalary(@PathVariable("sal")String sal) {
+		return userDetailService.percentOfUserLessThanGivenSalary(sal);
+	}
+	
+	
 }

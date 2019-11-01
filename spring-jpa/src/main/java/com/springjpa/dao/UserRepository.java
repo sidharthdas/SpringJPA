@@ -40,4 +40,13 @@ public interface UserRepository extends CrudRepository<UserDetail, Long> {
 	
 	@Query(value = "SELECT * FROM UserDetail WHERE userSalary < :salary", nativeQuery = true)
 	List<UserDetail> allUsersLessThanSalaryRange(@Param("salary")double salary);
+	
+	@Query(value = "SELECT COUNT(*) FROM UserDetail", nativeQuery = true)
+	int totalUsers();
+	
+	@Query(value = "SELECT COUNT(*) FROM UserDetail WHERE userSalary > :salary", nativeQuery = true)
+	int specificNumOfUser(@Param("salary") double salary);
+	
+	@Query(value = "SELECT COUNT(*) FROM UserDetail WHERE userSalary < :salary", nativeQuery = true)
+	int specificNumOfUser1(@Param("salary") double salary);
 }
