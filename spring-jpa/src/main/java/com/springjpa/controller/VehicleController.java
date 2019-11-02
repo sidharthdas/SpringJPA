@@ -2,6 +2,7 @@ package com.springjpa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,11 @@ public class VehicleController {
 	
 	@Autowired
 	private VehicleService vehicleService;
+	
+	@GetMapping("/test123")
+	public String test() {
+		return "working";
+	}
 
 	@PostMapping("/vehicle")
 	public Vehicle addVehicle(@RequestBody Vehicle vehicle) {
