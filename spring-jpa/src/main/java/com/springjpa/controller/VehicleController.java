@@ -1,5 +1,7 @@
 package com.springjpa.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +38,10 @@ public class VehicleController {
 	@PutMapping("/vehicle")
 	public String updateVehicleDesc(@RequestBody VehicleDecUpdate vehicleDescUpdate) {
 		return vehicleService.updateVehicleDesc(vehicleDescUpdate);
+	}
+	
+	@GetMapping("/all-vehicle")
+	public List<Vehicle> allVehicle(){
+		return vehicleService.allVehicle();
 	}
 }

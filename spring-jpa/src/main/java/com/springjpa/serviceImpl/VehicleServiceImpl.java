@@ -1,10 +1,13 @@
 package com.springjpa.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springjpa.dao.VehicleDao;
 import com.springjpa.dto.VehicleDecUpdate;
+import com.springjpa.functionalInterface.PercentageCalculation;
 import com.springjpa.model.Vehicle;
 import com.springjpa.service.VehicleService;
 
@@ -13,6 +16,9 @@ public class VehicleServiceImpl implements VehicleService {
 
 	@Autowired
 	private VehicleDao vehicleDao;
+	
+	@Autowired
+	private PercentageCalculation percentage;
 
 	@Override
 	public Vehicle addVechile(Vehicle vehicle) {
@@ -43,4 +49,19 @@ public class VehicleServiceImpl implements VehicleService {
 		}
 		return "Vehicle is not repsent.";
 	}
+
+	@Override
+	public List<Vehicle> allVehicle() {
+		// TODO Auto-generated method stub
+		return vehicleDao.allVehicle();
+	}
+	
+	/*
+	 * public void test() { float percent = percentage.percent(100, 20);
+	 * System.out.println(percent);
+	 * 
+	 * }
+	 */
+	
+	
 }

@@ -11,6 +11,7 @@ import com.springjpa.dao.UserRepository;
 import com.springjpa.dao.VehicleDao;
 import com.springjpa.dto.UserSalaryIncrementDto;
 import com.springjpa.functionalInterface.BonusComponent;
+import com.springjpa.functionalInterface.PercentageCalculation;
 import com.springjpa.functionalInterface.SalarayIncrement;
 import com.springjpa.model.UserDetail;
 import com.springjpa.model.Vehicle;
@@ -22,11 +23,13 @@ public class UserDetailServiceImpl implements UserDetailService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	
-	
-
 	@Autowired
 	private VehicleDao vechileDao;
+	
+	PercentageCalculation percentage = (int totalUser, int specificNumOfUser) -> {
+		float percent = (specificNumOfUser*100) / totalUser;
+		return percent;
+	};
 
 	SalarayIncrement salaryIncrement = (UserSalaryIncrementDto userSalaryIncrementDto) -> {
 		Optional<UserDetail> users = userRepository.findByUserName(userSalaryIncrementDto.getUserName());
@@ -146,6 +149,42 @@ public class UserDetailServiceImpl implements UserDetailService {
 		List<UserDetail> updatedUsersWithBonus = allUsers.stream()
 				.map((x) -> bonusComponent.updatedUserWithBonus(x, bonusAmount)).collect(Collectors.toList());
 		return updatedUsersWithBonus;
+	}
+
+	@Override
+	public List<UserDetail> allUsersLessThanSalaryRange(String salary) {
+		// TODO Auto-generated method stub
+		double sal = Double.valueOf(salary);
+		return userRepository.allUsersLessThanSalaryRange(sal);
+	}
+
+	@Override
+	public List<UserDetail> allUserGreaterThanSalaryRange(String salary) {
+		// TODO Auto-generated method stub
+		double sal = Double.valueOf(salary);
+		List<UserDetail> allUsers = userRepository.allUsers();
+		List<UserDetail> allUserGreaterThanSalaryRange = allUsers.stream().filter((x) -> x.getUserSalary() > sal).collect(Collectors.toList());
+		return allUserGreaterThanSalaryRange;
+	}
+
+	@Override
+	public String percentOfUserMoreThanGivenSalary(String salary) {
+		// TODO Auto-generated method stub
+		double sal = Double.valueOf(salary);
+		int totalUser = userRepository.totalUsers();
+		int specificNumOfUser = userRepository.specificNumOfUser(sal);
+		float percent = percentage.percent(totalUser, specificNumOfUser);
+		return percent +"%";
+	}
+
+	@Override
+	public String percentOfUserLessThanGivenSalary(String salary) {
+		// TODO Auto-generated method stub
+		double sal = Double.valueOf(salary);
+		int totalUser = userRepository.totalUsers();
+		int specificNumOfUser = userRepository.specificNumOfUser1(sal);
+		float percent = percentage.percent(totalUser, specificNumOfUser);
+		return percent+"%";
 	}
 
 }

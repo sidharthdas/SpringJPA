@@ -1,5 +1,6 @@
 package com.springjpa.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,5 +25,7 @@ public interface VehicleDao extends CrudRepository<Vehicle, Long> {
 	@Modifying
 	@Query(value = "UPDATE Vehicle SET vehicleDesc = :vehicleDesc WHERE vehicleName = :vehicleName", nativeQuery = true)
 	int updateVehicleDesc(@Param("vehicleDesc")String vehicleDesc, @Param("vehicleName")String vehicleName);
-
+	
+	@Query(value = " SELECT * FROM Vehicle", nativeQuery = true)
+	List<Vehicle> allVehicle();
 }
