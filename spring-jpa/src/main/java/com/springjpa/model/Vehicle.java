@@ -18,6 +18,17 @@ public class Vehicle {
 	private String vehicleType;
 	private String vehicleName;
 	private String vehicleDesc;
+	private String vechileManufactureYear;
+	
+	
+
+	public String getVechileManufactureYear() {
+		return vechileManufactureYear;
+	}
+
+	public void setVechileManufactureYear(String vechileManufactureYear) {
+		this.vechileManufactureYear = vechileManufactureYear;
+	}
 
 	public String getVehicleDesc() {
 		return vehicleDesc;

@@ -11,6 +11,7 @@ public interface VehicleService {
 	String deleteVehicle(String vehicleName);
 	String updateVehicleDesc(VehicleDecUpdate vehicleDescUpdate);
 	List<Vehicle> allVehicle();
+	List<Vehicle> allVehicleWithGivenYear(String year);
 
 
 }
