@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springjpa.dto.VehicleDecUpdate;
@@ -44,4 +45,12 @@ public class VehicleController {
 	public List<Vehicle> allVehicle(){
 		return vehicleService.allVehicle();
 	}
+<<<<<<< HEAD
+=======
+	
+	@GetMapping("/vehicle")
+	public List<Vehicle> vehicleManufacturedInGivenYear(@RequestParam("year")String year){
+		return vehicleService.allVehicleWithGivenYear(year);
+	}
+>>>>>>> f500e379e79ac66f48164bcc2979000622b0c856
 }

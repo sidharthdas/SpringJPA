@@ -3,10 +3,15 @@ package com.springjpa;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -19,14 +24,27 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "com")
-@EnableJpaRepositories(basePackages  ="com.springjpa.dao")
+@EnableJpaRepositories(basePackages = {"com.springjpa" } )
 @EntityScan(basePackages = "com.springjpa.model")
 @EnableTransactionManagement
 @EnableSwagger2
+@EnableEurekaClient
+@EnableCircuitBreaker
+@EnableHystrixDashboard
 public class SpringJpaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringJpaApplication.class, args);
+	}
+	
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
+	
+	@Bean
+	public WebClient.Builder getWebClientBuilder(){
+		return WebClient.builder();
 	}
 	
 	@Bean
@@ -46,5 +64,9 @@ public class SpringJpaApplication {
             .version("1.0.0")
             .build();
     }
+<<<<<<< HEAD
+=======
+	
+>>>>>>> f500e379e79ac66f48164bcc2979000622b0c856
 
 }
