@@ -12,6 +12,8 @@ public interface VehicleService {
 	String updateVehicleDesc(VehicleDecUpdate vehicleDescUpdate);
 	List<Vehicle> allVehicle();
 	List<Vehicle> allVehicleWithGivenYear(String year);
+	String deleteVehicleManufactureYear(String vechileManufactureYear);
+	String exportVehicleDataToExcel() throws Exception;
 
 
 }

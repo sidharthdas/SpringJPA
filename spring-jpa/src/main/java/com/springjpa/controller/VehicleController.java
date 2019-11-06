@@ -45,4 +45,20 @@ public class VehicleController {
 	public List<Vehicle> vehicleManufacturedInGivenYear(@RequestParam("year")String year){
 		return vehicleService.allVehicleWithGivenYear(year);
 	}
+	
+	@DeleteMapping("/vehicles")
+	public String deleteVehicleManufactureYear(@RequestParam("year")String year) {
+		return vehicleService.deleteVehicleManufactureYear(year);
+	}
+	
+	@GetMapping("/vehicleToExcel")
+	public String exportVehicleDataToExcel() {
+		try {
+			return vehicleService.exportVehicleDataToExcel();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "Server error";
+	}
 }
