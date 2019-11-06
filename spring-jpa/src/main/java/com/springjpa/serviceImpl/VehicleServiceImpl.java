@@ -3,12 +3,8 @@ package com.springjpa.serviceImpl;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.List;
-
 import java.util.Optional;
-
-
 import java.util.stream.Collectors;
-
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -21,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.springjpa.dao.VehicleDao;
 import com.springjpa.dto.VehicleDecUpdate;
 import com.springjpa.functionalInterface.PercentageCalculation;
+import com.springjpa.model.UserDetail;
 import com.springjpa.model.Vehicle;
 import com.springjpa.service.VehicleService;
 
@@ -120,57 +117,52 @@ public class VehicleServiceImpl implements VehicleService {
 
 	@Override
 	public String exportVehicleDataToExcel() throws Exception{
-		// TODO Auto-generated method stub
-		fis = new FileInputStream("C:\\Users\\P1327635\\git\\vehicleData.xlsx");
-		wb = WorkbookFactory.create(fis);
-		sh = wb.getSheet("Sheet1");
-		row = sh.createRow(0);
-		
-		cell = row.createCell(0);
-		cell.setCellValue("vehicleId");
-		
-		cell = row.createCell(1);
-		cell.setCellValue("vehicleName");
-		
-		cell = row.createCell(2);
-		cell.setCellValue("vehicleType");
-		
-		cell = row.createCell(3);
-		cell.setCellValue("vehicleDesc");
-		
-		cell = row.createCell(4);
-		cell.setCellValue("vechileManufactureYear");
-		
-		List<Vehicle> allVehicles = vehicleDao.allVehicle();
-		int size = allVehicles.size();
-		
-		for(int i = 0; i<size; i++) {
-			Vehicle v = allVehicles.get(i);
-			row = sh.createRow(i+1);
-			
-			cell = row.createCell(0);
-			cell.setCellValue(v.getVehicleId());
-			
-			cell = row.createCell(1);
-			cell.setCellValue(v.getVehicleName());
-			
-			cell = row.createCell(2);
-			cell.setCellValue(v.getVehicleType());
-			
-			cell = row.createCell(3);
-			cell.setCellValue(v.getVehicleDesc());
-			
-			cell = row.createCell(4);
-			cell.setCellValue(v.getVechileManufactureYear());
-		}
-		
-		
-		fos = new FileOutputStream("C:\\Users\\P1327635\\git\\vehicleData.xlsx");
-		wb.write(fos);
-		fos.flush();
+		/*
+		 * // TODO Auto-generated method stub //fis = new
+		 * FileInputStream("C:\\Users\\P1327635\\git\\vehicleData.xlsx"); // for windows
+		 * 
+		 * fis = new
+		 * FileInputStream("/Users/sidharthdas/git/SpringJPA/VehicleExcel.xlsx"); //for
+		 * mac wb = WorkbookFactory.create(fis); sh = wb.getSheet("Sheet1"); row =
+		 * sh.createRow(0);
+		 * 
+		 * cell = row.createCell(0); cell.setCellValue("vehicleId");
+		 * 
+		 * cell = row.createCell(1); cell.setCellValue("vehicleName");
+		 * 
+		 * cell = row.createCell(2); cell.setCellValue("vehicleType");
+		 * 
+		 * cell = row.createCell(3); cell.setCellValue("vehicleDesc");
+		 * 
+		 * cell = row.createCell(4); cell.setCellValue("vechileManufactureYear");
+		 * 
+		 * List<Vehicle> allVehicles = vehicleDao.allVehicle(); int size =
+		 * allVehicles.size();
+		 * 
+		 * for(int i = 0; i<size; i++) { Vehicle v = allVehicles.get(i); row =
+		 * sh.createRow(i+1);
+		 * 
+		 * cell = row.createCell(0); cell.setCellValue(v.getVehicleId());
+		 * 
+		 * cell = row.createCell(1); cell.setCellValue(v.getVehicleName());
+		 * 
+		 * cell = row.createCell(2); cell.setCellValue(v.getVehicleType());
+		 * 
+		 * cell = row.createCell(3); cell.setCellValue(v.getVehicleDesc());
+		 * 
+		 * cell = row.createCell(4); cell.setCellValue(v.getVechileManufactureYear()); }
+		 * 
+		 * 
+		 * fos = new
+		 * FileOutputStream("/Users/sidharthdas/git/SpringJPA/VehicleExcel.xlsx");
+		 * wb.write(fos); fos.flush();
+		 */
 		
 		return "Exportings";
 	}
+	
+	
+	
 
 
 }
