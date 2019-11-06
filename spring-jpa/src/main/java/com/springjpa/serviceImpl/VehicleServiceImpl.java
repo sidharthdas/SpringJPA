@@ -3,8 +3,12 @@ package com.springjpa.serviceImpl;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.List;
+
 import java.util.Optional;
+
+
 import java.util.stream.Collectors;
+
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,6 +29,8 @@ public class VehicleServiceImpl implements VehicleService {
 
 	@Autowired
 	private VehicleDao vehicleDao;
+	
+	
 
 	private PercentageCalculation percentage;
 	
@@ -75,6 +81,17 @@ public class VehicleServiceImpl implements VehicleService {
 		return vehicleDao.allVehicle();
 	}
 
+	
+	/*
+	 * public void test() { float percent = percentage.percent(100, 20);
+	 * System.out.println(percent);
+	 * 
+	 * }
+	 */
+	
+	
+
+
 	public void test() {
 		float percent = percentage.percent(100, 20);
 		System.out.println(percent);
@@ -88,6 +105,7 @@ public class VehicleServiceImpl implements VehicleService {
 		List<Vehicle> vehicleWithManufacturedYear = allVehicles.stream().filter((x) -> x.getVechileManufactureYear().equals(year)).collect(Collectors.toList());
 		return vehicleWithManufacturedYear;
 	}
+
 
 	@Override
 	public String deleteVehicleManufactureYear(String vechileManufactureYear) {
@@ -153,5 +171,6 @@ public class VehicleServiceImpl implements VehicleService {
 		
 		return "Exportings";
 	}
+
 
 }

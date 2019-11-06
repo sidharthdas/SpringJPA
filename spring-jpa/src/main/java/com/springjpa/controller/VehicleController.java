@@ -20,6 +20,11 @@ public class VehicleController {
 	
 	@Autowired
 	private VehicleService vehicleService;
+	
+	@GetMapping("/test123")
+	public String test() {
+		return "working";
+	}
 
 	@PostMapping("/vehicle")
 	public Vehicle addVehicle(@RequestBody Vehicle vehicle) {
@@ -40,11 +45,14 @@ public class VehicleController {
 	public List<Vehicle> allVehicle(){
 		return vehicleService.allVehicle();
 	}
+
+
 	
 	@GetMapping("/vehicle")
 	public List<Vehicle> vehicleManufacturedInGivenYear(@RequestParam("year")String year){
 		return vehicleService.allVehicleWithGivenYear(year);
 	}
+
 	
 	@DeleteMapping("/vehicles")
 	public String deleteVehicleManufactureYear(@RequestParam("year")String year) {
@@ -61,4 +69,5 @@ public class VehicleController {
 		}
 		return "Server error";
 	}
+
 }
