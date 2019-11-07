@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springjpa.dto.VehicleDecUpdate;
 import com.springjpa.model.Vehicle;
+import com.springjpa.service.ExcelExportService;
 import com.springjpa.service.VehicleService;
 
 @RestController
@@ -20,6 +21,9 @@ public class VehicleController {
 	
 	@Autowired
 	private VehicleService vehicleService;
+	
+	@Autowired
+	private ExcelExportService excelExportService;
 	
 	@GetMapping("/test123")
 	public String test() {
@@ -62,7 +66,7 @@ public class VehicleController {
 	@GetMapping("/vehicleToExcel")
 	public String exportVehicleDataToExcel() {
 		try {
-			return vehicleService.exportVehicleDataToExcel();
+			return excelExportService.vehicleDataExport();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

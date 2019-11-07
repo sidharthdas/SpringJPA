@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springjpa.dto.UserSalaryIncrementDto;
 import com.springjpa.dto.UserVechileDto;
 import com.springjpa.model.UserDetail;
+import com.springjpa.service.ExcelExportService;
 import com.springjpa.service.UserDetailService;
 
 @RestController
@@ -24,6 +25,9 @@ public class UserDetailController {
 
 	@Autowired
 	private UserDetailService userDetailService;
+	
+	@Autowired
+	private ExcelExportService excelExportService;
 
 	@PostMapping("/add-user")
 	public UserDetail addUser(@RequestBody UserDetail ud) {
@@ -94,5 +98,15 @@ public class UserDetailController {
 		return userDetailService.percentOfUserLessThanGivenSalary(sal);
 	}
 	
+	@GetMapping("/userDetailsToExcel")
+	public String exportUserDetailDataToExcel() {
+		try {
+			return excelExportService.userDetailDataExport();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "Server error";
+	}
 	
 }
