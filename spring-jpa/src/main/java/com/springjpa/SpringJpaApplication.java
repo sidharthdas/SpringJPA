@@ -64,9 +64,6 @@ public class SpringJpaApplication {
             .version("1.0.0")
             .build();
     }
-<<<<<<< HEAD
-=======
-	
->>>>>>> f500e379e79ac66f48164bcc2979000622b0c856
+
 
 }
