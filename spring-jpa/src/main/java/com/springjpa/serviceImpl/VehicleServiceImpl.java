@@ -1,23 +1,16 @@
 package com.springjpa.serviceImpl;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springjpa.dao.VehicleDao;
+import com.springjpa.dto.UpdatePriceOfVehicleDto;
 import com.springjpa.dto.VehicleDecUpdate;
-import com.springjpa.functionalInterface.PercentageCalculation;
-import com.springjpa.model.UserDetail;
+import com.springjpa.functionalInterface.PriceCalculation;
 import com.springjpa.model.Vehicle;
 import com.springjpa.service.VehicleService;
 
@@ -27,16 +20,11 @@ public class VehicleServiceImpl implements VehicleService {
 	@Autowired
 	private VehicleDao vehicleDao;
 	
-	
-
-	private PercentageCalculation percentage;
-	
-	private static Workbook wb;
-	private static Sheet sh;
-	private static FileInputStream fis;
-	private static FileOutputStream fos;
-	private static Row row;
-	private static Cell cell;
+	PriceCalculation priceCalculation = (double price, int percent) ->{
+		double increaseAmount = (price* percent) / 100;
+		double newPriceTag = price + increaseAmount;
+		return newPriceTag;
+	};
 
 	@Override
 	public Vehicle addVechile(Vehicle vehicle) {
@@ -78,22 +66,6 @@ public class VehicleServiceImpl implements VehicleService {
 		return vehicleDao.allVehicle();
 	}
 
-	
-	/*
-	 * public void test() { float percent = percentage.percent(100, 20);
-	 * System.out.println(percent);
-	 * 
-	 * }
-	 */
-	
-	
-
-
-	public void test() {
-		float percent = percentage.percent(100, 20);
-		System.out.println(percent);
-
-	}
 
 	@Override
 	public List<Vehicle> allVehicleWithGivenYear(String year) {
@@ -111,54 +83,41 @@ public class VehicleServiceImpl implements VehicleService {
 		return "Vehicle made in year "+vechileManufactureYear+" is now removed from database";
 	}
 	
-	/*
-	 * private String addingHeaderToExcel(Object obj) { Vehicle v = (Vehicle) obj; }
-	 */
+	
+	@Override
+	public String updatePriceOfVehicle(UpdatePriceOfVehicleDto updatePriceOfVehicleDto) {
+		// TODO Auto-generated method stub
+		Optional<Vehicle> vehicle = vehicleDao.findByVehicleName(updatePriceOfVehicleDto.getVehicleName());
+		if(vehicle.isPresent()) {
+			int i = vehicleDao.updatePriceOfVehicle(updatePriceOfVehicleDto.getVehicleName(), updatePriceOfVehicleDto.getVehiclePrice());
+			if(i != 0) {
+				return "Updated";
+			}
+		}
+		return "Vehicle not present";
+	}
 
 	@Override
-	public String exportVehicleDataToExcel() throws Exception{
-		/*
-		 * // TODO Auto-generated method stub //fis = new
-		 * FileInputStream("C:\\Users\\P1327635\\git\\vehicleData.xlsx"); // for windows
-		 * 
-		 * fis = new
-		 * FileInputStream("/Users/sidharthdas/git/SpringJPA/VehicleExcel.xlsx"); //for
-		 * mac wb = WorkbookFactory.create(fis); sh = wb.getSheet("Sheet1"); row =
-		 * sh.createRow(0);
-		 * 
-		 * cell = row.createCell(0); cell.setCellValue("vehicleId");
-		 * 
-		 * cell = row.createCell(1); cell.setCellValue("vehicleName");
-		 * 
-		 * cell = row.createCell(2); cell.setCellValue("vehicleType");
-		 * 
-		 * cell = row.createCell(3); cell.setCellValue("vehicleDesc");
-		 * 
-		 * cell = row.createCell(4); cell.setCellValue("vechileManufactureYear");
-		 * 
-		 * List<Vehicle> allVehicles = vehicleDao.allVehicle(); int size =
-		 * allVehicles.size();
-		 * 
-		 * for(int i = 0; i<size; i++) { Vehicle v = allVehicles.get(i); row =
-		 * sh.createRow(i+1);
-		 * 
-		 * cell = row.createCell(0); cell.setCellValue(v.getVehicleId());
-		 * 
-		 * cell = row.createCell(1); cell.setCellValue(v.getVehicleName());
-		 * 
-		 * cell = row.createCell(2); cell.setCellValue(v.getVehicleType());
-		 * 
-		 * cell = row.createCell(3); cell.setCellValue(v.getVehicleDesc());
-		 * 
-		 * cell = row.createCell(4); cell.setCellValue(v.getVechileManufactureYear()); }
-		 * 
-		 * 
-		 * fos = new
-		 * FileOutputStream("/Users/sidharthdas/git/SpringJPA/VehicleExcel.xlsx");
-		 * wb.write(fos); fos.flush();
-		 */
-		
-		return "Exportings";
+	public List<Vehicle> vehicleInGivenRange(String price) {
+		// TODO Auto-generated method stub
+		double vehiclePrice = Double.valueOf(price);
+		List<Vehicle> allVehicle = vehicleDao.allVehicle();
+		List<Vehicle> vehicleLessThanGivenRange = allVehicle.stream().filter((x) -> (x.getVehiclePrice() <= vehiclePrice)).collect(Collectors.toList());
+		return vehicleLessThanGivenRange;
+	}
+
+	@Override
+	public String updatePriceOfAllVehicleAfterDiscount(int discount) {
+		// TODO Auto-generated method stub
+		List<Vehicle> allVehicles = allVehicle();
+		for(Vehicle v : allVehicles) {
+			double newPrice = priceCalculation.newPriceCalculation(v.getVehiclePrice(), discount);
+			UpdatePriceOfVehicleDto upvd = new UpdatePriceOfVehicleDto();
+			upvd.setVehicleName(v.getVehicleName());
+			upvd.setVehiclePrice(newPrice);
+			updatePriceOfVehicle(upvd);
+		}
+		return "Price for all vehicles is updated";
 	}
 	
 	

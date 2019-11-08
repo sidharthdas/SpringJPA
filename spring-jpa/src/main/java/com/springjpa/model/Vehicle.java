@@ -19,8 +19,17 @@ public class Vehicle {
 	private String vehicleName;
 	private String vehicleDesc;
 	private String vechileManufactureYear;
+	private double vehiclePrice;
 	
 	
+
+	public double getVehiclePrice() {
+		return vehiclePrice;
+	}
+
+	public void setVehiclePrice(double vehiclePrice) {
+		this.vehiclePrice = vehiclePrice;
+	}
 
 	public String getVechileManufactureYear() {
 		return vechileManufactureYear;

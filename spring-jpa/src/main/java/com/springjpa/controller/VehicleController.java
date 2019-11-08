@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springjpa.dto.UpdatePriceOfVehicleDto;
 import com.springjpa.dto.VehicleDecUpdate;
 import com.springjpa.model.Vehicle;
 import com.springjpa.service.ExcelExportService;
@@ -72,6 +73,22 @@ public class VehicleController {
 			e.printStackTrace();
 		}
 		return "Server error";
+	}
+	
+	@PutMapping("/vehicle-price-update")
+	String updatePriceOfVehicle(@RequestBody UpdatePriceOfVehicleDto updatePriceOfVehicleDto) {
+		return vehicleService.updatePriceOfVehicle(updatePriceOfVehicleDto);
+	}
+	
+	@GetMapping("/vehicles")
+	public List<Vehicle> vehicleInGivenRange(@RequestParam("price") String price) {
+		return vehicleService.vehicleInGivenRange(price);
+	}
+	
+	// Error
+	@PostMapping("/update-vehicle-price")
+	public String updatePriceOfAllVehicleAfterDiscount(@RequestParam("discount")int discount) {
+		return updatePriceOfAllVehicleAfterDiscount(discount);
 	}
 
 }

@@ -32,4 +32,8 @@ public interface VehicleDao extends CrudRepository<Vehicle, Long> {
 	@Modifying
 	@Query(value = "DELETE FROM Vehicle WHERE  vechileManufactureYear = :vechileManufactureYear", nativeQuery = true)
 	void deleteVehiclesOfGivenDate(@Param("vechileManufactureYear") String vechileManufactureYear);
+	
+	@Modifying
+	@Query(value = "UPDATE Vehicle SET vehiclePrice = :vehiclePrice WHERE vehicleName = :vehicleName ", nativeQuery = true)
+	int updatePriceOfVehicle(@Param("vehicleName")String vehicleName, @Param("vehiclePrice")double updatedPrice);
 }

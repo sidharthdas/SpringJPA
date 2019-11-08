@@ -53,7 +53,7 @@ public class ExcelExportServiceImpl implements ExcelExportService{
 	@Override
 	public String vehicleDataExport() throws Exception{
 		// TODO Auto-generated method stub
-		fis = new FileInputStream(VEHICLE_EXCEL_DATA_PATH_ON_MAC); //for mac
+		fis = new FileInputStream(VEHICLE_EXCEL_DATA_PATH_ON_WIN); //for mac
 		wb = WorkbookFactory.create(fis);
 		sh = wb.getSheet("Sheet1");
 		row = sh.createRow(0);
@@ -97,7 +97,7 @@ public class ExcelExportServiceImpl implements ExcelExportService{
 			
 		}
 		
-		fos = new FileOutputStream(VEHICLE_EXCEL_DATA_PATH_ON_MAC);
+		fos = new FileOutputStream(VEHICLE_EXCEL_DATA_PATH_ON_WIN);
 		wb.write(fos);
 		fos.flush();
 		return RESPONSE_TEXT;
@@ -106,7 +106,7 @@ public class ExcelExportServiceImpl implements ExcelExportService{
 	@Override
 	public String userDetailDataExport() throws Exception{
 		// TODO Auto-generated method stub
-		fis = new FileInputStream(USERDETAIL_EXCEL_DATA_PATH_ON_MAC); //for mac
+		fis = new FileInputStream(USERDETAIL_EXCEL_DATA_PATH_ON_WIN); //for mac
 		wb = WorkbookFactory.create(fis);
 		sh = wb.getSheet("Sheet1");
 		row = sh.createRow(0);
@@ -153,7 +153,7 @@ public class ExcelExportServiceImpl implements ExcelExportService{
 			
 		}
 		
-		fos = new FileOutputStream(USERDETAIL_EXCEL_DATA_PATH_ON_MAC);
+		fos = new FileOutputStream(USERDETAIL_EXCEL_DATA_PATH_ON_WIN);
 		wb.write(fos);
 		fos.flush();
 		return RESPONSE_TEXT;

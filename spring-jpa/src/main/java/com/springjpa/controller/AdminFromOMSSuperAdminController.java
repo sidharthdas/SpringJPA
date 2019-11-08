@@ -22,18 +22,30 @@ public class AdminFromOMSSuperAdminController {
 	}
 
 	@GetMapping("/all-super-admins")
-	@HystrixCommand(fallbackMethod = "getFallbackGetAllAdmin", commandProperties = {
-			@HystrixProperty(name = "hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds", value = "2000"),
-			@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
-			@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"),
-			@HystrixProperty(name = "circuitBreaker.sleepwindowInMilliseconds", value = "5000") })
+	@HystrixCommand(fallbackMethod = "getFallbackGetAllAdmin", commandProperties = { /*
+																						 * @HystrixProperty(name =
+																						 * "hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds",
+																						 * value = "2000"),
+																						 * 
+																						 * @HystrixProperty(name =
+																						 * "circuitBreaker.requestVolumeThreshold",
+																						 * value = "5"),
+																						 * 
+																						 * @HystrixProperty(name =
+																						 * "circuitBreaker.errorThresholdPercentage",
+																						 * value = "50"),
+																						 * 
+																						 * @HystrixProperty(name =
+																						 * "circuitBreaker.sleepwindowInMilliseconds",
+																						 * value = "5000")
+																						 */ })
 	public Object getAllAdmin() {
 		Object allAdmins = restTemplate.getForObject("http://localhost:9090/api/super-admin/show-all-admins",
 				Object.class);
 		return allAdmins;
 	}
 
-	public Object getFallbackGetAllAdmin() {
+	public String getFallbackGetAllAdmin() {
 		return "Tmporrary Out of Service";
 	}
 
