@@ -85,10 +85,9 @@ public class VehicleController {
 		return vehicleService.vehicleInGivenRange(price);
 	}
 	
-	// Error
-	@PostMapping("/update-vehicle-price")
+	@PutMapping("/update-vehicle-price")
 	public String updatePriceOfAllVehicleAfterDiscount(@RequestParam("discount")int discount) {
-		return updatePriceOfAllVehicleAfterDiscount(discount);
+		return vehicleService.updatePriceOfAllVehicleAfterDiscount(discount);
 	}
 
 }

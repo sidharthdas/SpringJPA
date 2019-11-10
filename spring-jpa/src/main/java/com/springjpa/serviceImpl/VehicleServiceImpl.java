@@ -22,7 +22,7 @@ public class VehicleServiceImpl implements VehicleService {
 	
 	PriceCalculation priceCalculation = (double price, int percent) ->{
 		double increaseAmount = (price* percent) / 100;
-		double newPriceTag = price + increaseAmount;
+		double newPriceTag = price - increaseAmount;
 		return newPriceTag;
 	};
 
