@@ -21,7 +21,7 @@ public class VehicleServiceImpl implements VehicleService {
 	private VehicleDao vehicleDao;
 	
 	PriceCalculation priceCalculation = (double price, int percent) ->{
-		double increaseAmount = (price* percent) / 100;
+		double increaseAmount = (price * percent) / 100;
 		double newPriceTag = price - increaseAmount;
 		return newPriceTag;
 	};
@@ -119,9 +119,10 @@ public class VehicleServiceImpl implements VehicleService {
 		}
 		return "Price for all vehicles is updated";
 	}
-	
-	
-	
 
-
+	@Override
+	public List<Vehicle> changeManufactureyear(String year) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

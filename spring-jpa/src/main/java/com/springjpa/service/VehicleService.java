@@ -25,5 +25,7 @@ public interface VehicleService {
 	List<Vehicle> vehicleInGivenRange(String price);
 	
 	String updatePriceOfAllVehicleAfterDiscount(int discount);
+	
+	List<Vehicle> changeManufactureyear(String year);
 
 }
