@@ -125,4 +125,23 @@ public class VehicleServiceImpl implements VehicleService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String updateVehicleQuantity(int quantity, String vehicleName) {
+		Optional<Vehicle> vehicle = vehicleDao.findByVehicleName(vehicleName);
+		if(!vehicle.equals(null)) {
+			int i = vehicleDao.updateVehicleQuantity(quantity, vehicleName);
+			if(i != 0) {
+				return "Quantity is updated for vehicle "+vehicleName;
+			}
+			return "Internal Server error.";
+		}
+		return "Vehicle not present.";
+	}
+
+	@Override
+	public String updateQuantityOfAllVehicles(int quantity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

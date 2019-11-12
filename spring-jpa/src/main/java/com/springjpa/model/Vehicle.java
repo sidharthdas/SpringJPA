@@ -20,23 +20,30 @@ public class Vehicle {
 	private String vehicleDesc;
 	private String vechileManufactureYear;
 	private double vehiclePrice;
-	
-	
+	private int quantity;
 
-	public double getVehiclePrice() {
-		return vehiclePrice;
+	public Long getVehicleId() {
+		return vehicleId;
 	}
 
-	public void setVehiclePrice(double vehiclePrice) {
-		this.vehiclePrice = vehiclePrice;
+	public void setVehicleId(Long vehicleId) {
+		this.vehicleId = vehicleId;
 	}
 
-	public String getVechileManufactureYear() {
-		return vechileManufactureYear;
+	public String getVehicleType() {
+		return vehicleType;
 	}
 
-	public void setVechileManufactureYear(String vechileManufactureYear) {
-		this.vechileManufactureYear = vechileManufactureYear;
+	public void setVehicleType(String vehicleType) {
+		this.vehicleType = vehicleType;
+	}
+
+	public String getVehicleName() {
+		return vehicleName;
+	}
+
+	public void setVehicleName(String vehicleName) {
+		this.vehicleName = vehicleName;
 	}
 
 	public String getVehicleDesc() {
@@ -47,28 +54,28 @@ public class Vehicle {
 		this.vehicleDesc = vehicleDesc;
 	}
 
-	public Long getVehicleId() {
-		return vehicleId;
+	public String getVechileManufactureYear() {
+		return vechileManufactureYear;
 	}
 
-	public void setVechileId(Long vehicleId) {
-		this.vehicleId = vehicleId;
+	public void setVechileManufactureYear(String vechileManufactureYear) {
+		this.vechileManufactureYear = vechileManufactureYear;
 	}
 
-	public String getVehicleType() {
-		return vehicleType;
+	public double getVehiclePrice() {
+		return vehiclePrice;
 	}
 
-	public void setVechileType(String vehicleType) {
-		this.vehicleType = vehicleType;
+	public void setVehiclePrice(double vehiclePrice) {
+		this.vehiclePrice = vehiclePrice;
 	}
 
-	public String getVehicleName() {
-		return vehicleName;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setVechileName(String vehicleName) {
-		this.vehicleName = vehicleName;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }

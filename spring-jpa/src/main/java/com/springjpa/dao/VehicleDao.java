@@ -36,4 +36,8 @@ public interface VehicleDao extends CrudRepository<Vehicle, Long> {
 	@Modifying
 	@Query(value = "UPDATE Vehicle SET vehiclePrice = :vehiclePrice WHERE vehicleName = :vehicleName ", nativeQuery = true)
 	int updatePriceOfVehicle(@Param("vehicleName")String vehicleName, @Param("vehiclePrice")double updatedPrice);
+	
+	@Modifying
+	@Query(value = "UPDATE Vehicle SET quantity = :quantity WHERE vehicleName = :vehicleName", nativeQuery = true)
+	int updateVehicleQuantity(@Param("quantity")int quantity, @Param("vehicleName")String vehicleName);
 }

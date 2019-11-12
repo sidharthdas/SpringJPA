@@ -28,13 +28,13 @@ import com.springjpa.service.VehicleService;
 
 @RestController
 public class VehicleController {
-	
+
 	@Autowired
 	private VehicleService vehicleService;
-	
+
 	@Autowired
 	private ExcelExportService excelExportService;
-	
+
 	@GetMapping("/test123")
 	public String test() {
 		return "working";
@@ -44,35 +44,32 @@ public class VehicleController {
 	public Vehicle addVehicle(@RequestBody Vehicle vehicle) {
 		return vehicleService.addVechile(vehicle);
 	}
-	
+
 	@DeleteMapping("/vehicle")
 	public String deleteVehicle(@RequestBody String vehicleName) {
 		return vehicleService.deleteVehicle(vehicleName);
 	}
-	
+
 	@PutMapping("/vehicle")
 	public String updateVehicleDesc(@RequestBody VehicleDecUpdate vehicleDescUpdate) {
 		return vehicleService.updateVehicleDesc(vehicleDescUpdate);
 	}
-	
+
 	@GetMapping("/all-vehicle")
-	public List<Vehicle> allVehicle(){
+	public List<Vehicle> allVehicle() {
 		return vehicleService.allVehicle();
 	}
 
-
-	
 	@GetMapping("/vehicle")
-	public List<Vehicle> vehicleManufacturedInGivenYear(@RequestParam("year")String year){
+	public List<Vehicle> vehicleManufacturedInGivenYear(@RequestParam("year") String year) {
 		return vehicleService.allVehicleWithGivenYear(year);
 	}
 
-	
 	@DeleteMapping("/vehicles")
-	public String deleteVehicleManufactureYear(@RequestParam("year")String year) {
+	public String deleteVehicleManufactureYear(@RequestParam("year") String year) {
 		return vehicleService.deleteVehicleManufactureYear(year);
 	}
-	
+
 	@GetMapping("/vehicleToExcel")
 	public String exportVehicleDataToExcel() {
 		try {
@@ -83,20 +80,27 @@ public class VehicleController {
 		}
 		return "Server error";
 	}
-	
+
 	@PutMapping("/vehicle-price-update")
 	String updatePriceOfVehicle(@RequestBody UpdatePriceOfVehicleDto updatePriceOfVehicleDto) {
 		return vehicleService.updatePriceOfVehicle(updatePriceOfVehicleDto);
 	}
-	
+
 	@GetMapping("/vehicles")
 	public List<Vehicle> vehicleInGivenRange(@RequestParam("price") String price) {
 		return vehicleService.vehicleInGivenRange(price);
 	}
-	
+
 	@PutMapping("/update-vehicle-price")
-	public String updatePriceOfAllVehicleAfterDiscount(@RequestParam("discount")int discount) {
+	public String updatePriceOfAllVehicleAfterDiscount(@RequestParam("discount") int discount) {
 		return vehicleService.updatePriceOfAllVehicleAfterDiscount(discount);
+	}
+
+	@PutMapping("/update-quantity")
+	public ResponseEntity<String> updateQuantityOfVehicle(@RequestParam("vehicle-name") String vehicleName,
+			@RequestBody int quantity) {
+		return new ResponseEntity<String>(vehicleService.updateVehicleQuantity(quantity, vehicleName), HttpStatus.OK);
+
 	}
 
 }
